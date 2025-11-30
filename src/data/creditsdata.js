@@ -21,7 +21,7 @@ const credits = [
     amountRange: "$10M - $80M",
     amountMin: 10000000,
     amountMax: 80000000,
-    termMax: 84,
+    termMax: 72,
     description: "Crédito diseñado para comprar carro nuevo o usado, con plazos amplios y trámites sencillos. Permite financiar gran parte del valor del vehículo y ofrece tasas atractivas y accesibles."
   },
   {
@@ -45,7 +45,7 @@ const credits = [
     amountRange: "$2M - $40M",
     amountMin: 2000000,
     amountMax: 40000000,
-    termMax: 72,
+    termMax: 48,
     description: "Crédito para financiar estudios técnicos, universitarios o de posgrado. Cubre matrícula y otros gastos académicos, con plazos cómodos y tasas que facilitan el desarrollo profesional."
   },
   {
