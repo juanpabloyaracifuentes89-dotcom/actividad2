@@ -4,27 +4,28 @@ import Footer from "../components/Footer";
 
 export default function Simulador() {
   // --- Estados del componente ---
-  const [tipo, setTipo] = useState(""); // Tipo de crédito seleccionado
-  const [plazosDisponibles, setPlazosDisponibles] = useState([]); // Plazos de meses disponibles
-  const [tasaInteres, setTasaInteres] = useState(""); // Tasa de interés automática
-  const [montoMinimo, setMontoMinimo] = useState(0); // Monto mínimo por tipo de crédito
+  const [tipo, setTipo] = useState("");
+  const [plazosDisponibles, setPlazosDisponibles] = useState([]);
+  const [tasaInteres, setTasaInteres] = useState("");
+  const [montoMinimo, setMontoMinimo] = useState(0); 
+  const [montoMaximo, setMontoMaximo] = useState(0); 
   
   // Estados para el cálculo y los inputs
-  const [monto, setMonto] = useState(""); // Valor actual del input de monto
-  const [plazo, setPlazo] = useState(""); // Valor actual del select de plazo
+  const [monto, setMonto] = useState(""); // Valor actual del input de monto (Inicialmente vacío)
+  const [plazo, setPlazo] = useState(""); 
   
   // Estado para mostrar los resultados y errores
   const [resultado, setResultado] = useState({ cuota: 0, total: 0, error: "" }); 
 
   // --- Definición de Parámetros de Crédito ---
-  // Incluye: Plazo Máximo (meses), Tasa Mensual (%), Monto Mínimo (COP)
   const parametrosCredito = {
-    libre: { maxPlazo: 60, tasa: 1.8, minMonto: 1000000 },
-    vehiculo: { maxPlazo: 72, tasa: 1.5, minMonto: 10000000 },
-    vivienda: { maxPlazo: 240, tasa: 0.9, minMonto: 20000000 },
-    educativo: { maxPlazo: 48, tasa: 1.2, minMonto: 2000000 },
-    empresarial: { maxPlazo: 120, tasa: 1.6, minMonto: 5000000 },
-    consumo: { maxPlazo: 48, tasa: 2.1, minMonto: 500000 },
+    // maxPlazo (meses), tasa (%), minMonto (COP), maxMonto (COP)
+    libre: { maxPlazo: 60, tasa: 1.8, minMonto: 1000000, maxMonto: 30000000 },
+    vehiculo: { maxPlazo: 72, tasa: 1.5, minMonto: 10000000, maxMonto: 80000000 },
+    vivienda: { maxPlazo: 240, tasa: 0.9, minMonto: 20000000, maxMonto: 500000000 },
+    educativo: { maxPlazo: 48, tasa: 1.2, minMonto: 2000000, maxMonto: 40000000 },
+    empresarial: { maxPlazo: 120, tasa: 1.6, minMonto: 5000000, maxMonto: 150000000 },
+    consumo: { maxPlazo: 48, tasa: 2.1, minMonto: 500000, maxMonto: 20000000 },
   };
 
   // --- Manejadores de Eventos ---
@@ -32,25 +33,27 @@ export default function Simulador() {
   // Cuando cambia la selección del tipo de crédito
   const handleTipoChange = (value) => {
     setTipo(value);
-    setResultado({ cuota: 0, total: 0, error: "" }); // Limpiar resultado al cambiar tipo
+    setResultado({ cuota: 0, total: 0, error: "" });
 
     if (value === "") {
       setPlazosDisponibles([]);
       setTasaInteres("");
       setMontoMinimo(0); 
-      setMonto(""); 
-      setPlazo(""); // Limpiar plazo
+      setMontoMaximo(0);
+      setMonto(""); // ¡Importante: se mantiene vacío!
+      setPlazo(""); 
       return;
     }
 
-    const { maxPlazo, tasa, minMonto } = parametrosCredito[value];
+    const { maxPlazo, tasa, minMonto, maxMonto } = parametrosCredito[value];
     
     setTasaInteres(tasa); 
     setMontoMinimo(minMonto);
-    setMonto(minMonto); // Opcional: Establecer el valor inicial del input de monto al mínimo
-    setPlazo(""); // Resetear plazo al cambiar el tipo, para que el usuario elija uno nuevo
+    setMontoMaximo(maxMonto);
+    setMonto(""); // ¡Importante: NO pre-llenar, dejar vacío!
+    setPlazo(""); 
     
-    // Generar array de meses (solo múltiplos de 12 hasta el maxPlazo)
+    // Generar array de meses (solo múltiplos de 12)
     const mesesMultiplosDe12 = [];
     for (let i = 12; i <= maxPlazo; i += 12) {
       mesesMultiplosDe12.push(i);
@@ -61,28 +64,35 @@ export default function Simulador() {
   // Cuando cambia el valor del input del monto
   const handleMontoChange = (e) => {
     const value = parseInt(e.target.value, 10);
-    setMonto(value || ''); // Guardar el valor, o vacío si se borra
-    setResultado({ cuota: 0, total: 0, error: "" }); // Limpiar resultado
+    // Nota: La restricción MAX y MIN se aplica principalmente por el atributo 'max' y 'min' en el HTML, 
+    // y la validación en `calcularCuota`. Aquí solo evitamos que se escriba un valor mayor si es necesario.
+    setMonto(value || ''); 
+    setResultado({ cuota: 0, total: 0, error: "" });
   };
 
   // Cuando cambia la selección del plazo
   const handlePlazoChange = (e) => {
       setPlazo(e.target.value);
-      setResultado({ cuota: 0, total: 0, error: "" }); // Limpiar resultado
+      setResultado({ cuota: 0, total: 0, error: "" });
   }
 
   // --- Lógica de Cálculo Principal ---
   const calcularCuota = () => {
-    const P = parseFloat(monto); // Monto principal
-    const n = parseInt(plazo); // Número de períodos (meses)
-    const tasaMensualPorcentual = parseFloat(tasaInteres); // Tasa en porcentaje (e.g., 1.8)
-
+    const P = parseFloat(monto); 
+    const n = parseInt(plazo); 
+    const tasaMensualPorcentual = parseFloat(tasaInteres); 
+    
     // 1. Validación de entradas
-    if (!P || isNaN(P) || !n || isNaN(n) || !tasaMensualPorcentual || isNaN(tasaMensualPorcentual) || P < montoMinimo) {
+    if (!P || isNaN(P) || !n || isNaN(n) || !tasaMensualPorcentual || isNaN(tasaMensualPorcentual) || P < montoMinimo || P > montoMaximo) {
+        let errorMsg = "Debe seleccionar Tipo de Crédito y Plazo, e ingresar un Monto válido. ";
+        if (P < montoMinimo) errorMsg = `El monto debe ser al menos ${formatCurrency(montoMinimo)}.`;
+        if (P > montoMaximo) errorMsg = `El monto no puede superar ${formatCurrency(montoMaximo)}.`;
+        if (!tipo || !plazo || !P) errorMsg = "Debe completar todos los campos de selección y monto.";
+
         setResultado({ 
             cuota: 0, 
             total: 0, 
-            error: "Debe seleccionar Tipo de Crédito y Plazo, e ingresar un Monto válido (superior o igual al mínimo)." 
+            error: errorMsg
         });
         return;
     }
@@ -94,24 +104,23 @@ export default function Simulador() {
     const factor = Math.pow(1 + i, n);
     const cuotaMensual = P * (i * factor) / (factor - 1);
     
-    // Cálculo del total a pagar (aunque no se muestra directamente, es útil para intereses totales)
     const totalPagar = cuotaMensual * n;
 
     // 4. Actualizar estado con los resultados redondeados
     setResultado({
         cuota: Math.round(cuotaMensual),
-        total: Math.round(totalPagar), // Mantener el total para el cálculo de intereses
+        total: Math.round(totalPagar),
         error: ""
     });
   };
 
   // --- Función de Formato de Moneda ---
   const formatCurrency = (number) => {
-    if (isNaN(number)) return ''; // Asegurarse de que no formatee NaN
-    return new Intl.NumberFormat('es-CO', { // Formato para Colombia (ajusta si es otro país)
+    if (isNaN(number)) return '';
+    return new Intl.NumberFormat('es-CO', { 
         style: 'currency',
-        currency: 'COP', // Peso Colombiano (ajusta a tu moneda, e.g., USD, EUR)
-        minimumFractionDigits: 0, // Sin decimales para montos grandes
+        currency: 'COP', 
+        minimumFractionDigits: 0, 
         maximumFractionDigits: 0
     }).format(number);
   };
@@ -121,14 +130,11 @@ export default function Simulador() {
     <>
       <Navbar />
 
-      {/* Contenedor principal de la página del simulador */}
-      {/* Usar 'contenedor-full-width' si necesitas que el simulador ocupe todo el ancho, 
-          de lo contrario, podrías usar la clase 'contenedor' original si prefieres que se centre. */}
-      <div className="page-wrapper simulador-full"> {/* Mantengo tu clase actual */}
-        <div className="simulador-content"> {/* Asegúrate de que esta clase o su padre manejen el ancho */}
+      <div className="page-wrapper simulador-full"> 
+        <div className="simulador-content"> 
           <h1>Simula tu Crédito 💳</h1>
 
-          <div className="simulador-box"> {/* Este es el contenedor blanco del formulario */}
+          <div className="simulador-box"> 
 
             {/* Selector de Tipo de Crédito */}
             <label>Tipo de crédito</label>
@@ -146,18 +152,20 @@ export default function Simulador() {
             <label>Monto solicitado</label>
             <input 
               type="number" 
-              placeholder={`Mínimo: ${formatCurrency(montoMinimo)}`}
-              value={monto} // Enlazado al estado 'monto'
+              // Placeholder modificado para mostrar el rango
+              placeholder={`Mín: ${formatCurrency(montoMinimo)} | Máx: ${formatCurrency(montoMaximo)}`}
+              value={monto} // Enlazado al estado 'monto' (que ahora se inicializa en vacío)
               onChange={handleMontoChange}
-              min={montoMinimo} // Restricción HTML del monto mínimo
+              min={montoMinimo} 
+              max={montoMaximo} 
             />
 
             {/* Selector de Plazo Disponible */}
             <label>Plazo disponible (meses)</label>
             <select 
                 onChange={handlePlazoChange} 
-                value={plazo} // Enlazado al estado 'plazo'
-                disabled={plazosDisponibles.length === 0} // Deshabilitado si no hay opciones
+                value={plazo} 
+                disabled={plazosDisponibles.length === 0}
             >
               <option value="">Seleccione un plazo</option>
 
@@ -168,13 +176,13 @@ export default function Simulador() {
               ))}
             </select>
 
-            {/* Input de Tasa de Interés (Automática y de solo lectura) */}
+            {/* Input de Tasa de Interés */}
             <label>Tasa de interés (%)</label>
             <input 
-              type="text" // Tipo texto para mostrar el "% Mensual"
+              type="text" 
               placeholder="Tasa automática"
               value={tasaInteres ? `${tasaInteres} % Mensual` : ''} 
-              readOnly // No permite edición manual
+              readOnly 
             />
 
             {/* Botón de Cálculo */}
@@ -183,10 +191,9 @@ export default function Simulador() {
             {/* Bloque de Resultado de la Simulación */}
             <div className="resultado">
               <h3>Resultado de la Simulación</h3>
-              {/* Mostrar errores si existen */}
+              
               {resultado.error && <p style={{ color: 'red', fontWeight: 'bold' }}>{resultado.error}</p>}
               
-              {/* Mostrar resultados si se han calculado exitosamente */}
               {!resultado.error && resultado.cuota > 0 && (
                 <>
                   <p>Cuota mensual fija: **{formatCurrency(resultado.cuota)}**</p>
@@ -195,13 +202,12 @@ export default function Simulador() {
                   </p>
                 </>
               )}
-               {/* Mensaje inicial si no hay resultados */}
                {!resultado.cuota && !resultado.error && <p style={{color: '#888'}}>Seleccione los parámetros y presione "Calcular".</p>}
             </div>
 
-          </div> {/* Cierre de simulador-box */}
-        </div> {/* Cierre de simulador-content */}
-      </div> {/* Cierre de page-wrapper */}
+          </div> 
+        </div> 
+      </div> 
 
       <Footer />
     </>
