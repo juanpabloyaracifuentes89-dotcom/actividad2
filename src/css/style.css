@@ -1,0 +1,478 @@
+/*Estilos Generales*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Glacial Indifference", "Arial", "Times New Roman";
+    background-color: #d8d8d8;
+    color: #000;
+    line-height: 1.6;
+}
+
+.contenedor{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*Navegación*/
+
+.BarraNav{
+    background: linear-gradient(135deg, #6320ff 0%, #7550f8 100%);
+    padding: 1rem 0;
+    box-shadow: 0 2px;
+    margin-bottom: 2rem;
+}
+
+.BarraNav .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+
+.logo{
+    color:#ffffff;
+    font-size: 1.5rem;
+}
+
+.menu{
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.menu a{
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+
+}
+
+.menu a:hover,
+.menu a.active{
+    color: #bdbdbd;
+}
+
+/*BANNER*/
+
+.Banner{
+    background: linear-gradient(135deg, #5810ff 0%, #7049ff 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.Banner h2{
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.Banner p{
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+.creditos-seccion{
+    padding: 3rem 0;
+}
+
+.creditos-seccion h3{
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 2rem ;
+}
+
+.red-creditos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.credit-card{
+    background: white;
+    border-radius: 12;
+    padding: 1.5rem;
+    box-shadow: 0 2px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.credit-card:hover{
+    transform: translate(-px);
+    box-shadow: 0 4px 15 rgba(30, 58, 138, 0.2);
+}
+
+.card-header{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;    
+    margin-bottom: 1rem;
+}
+
+.icon{
+    font-size: 2rem;
+
+}
+
+.card-header h4{
+    font-size: 1.3rem;
+    color: #000;
+}
+
+.detail{
+    margin-bottom: 1.5rem;
+
+}
+
+.detail-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.label{
+    color: #8f95a0;
+    font-size: 0.9rem;
+}
+
+.value{
+    font-weight: 600;
+    color: #000;
+}
+
+.highlight{
+    color: #9545ff;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background-color: #652efc;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* ← animación suave */
+}
+
+.btn-primary:hover {
+    background-color: #7342fc;
+}
+
+
+.carrusel {
+  width: 100%;
+  height: 250px; 
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+}
+
+.slides {
+  display: flex;
+  width: calc(200%);
+  animation: scroll 60s linear infinite;
+}
+
+.slides img {
+  width: calc(100% / 6); 
+  height: 100%;
+  object-fit: contain; 
+  background-color: #fff; 
+  padding: 2px; 
+}
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* se desplaza la mitad del contenedor */
+  }
+}
+
+
+/*SECCIÓN DE SIMULADOR DE CRÉDITOS*/
+.simulador {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.simulador h2 {
+    color: #4b2bff;
+    margin-bottom: 0.5rem;
+}
+
+.simulador p {
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+
+.form-simulador {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.campo label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.campo select,
+.campo input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.btn-buscar {
+    background-color: #652efc;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-buscar:hover {
+    background-color: #7342fc;
+}
+
+.resultado {
+    margin-top: 2rem;
+    text-align: left;
+    font-size: 1rem;
+}
+
+
+/* ======= Formulario de Solicitud ======= */
+.titulo-formulario {
+  text-align: center;
+  font-size: 2rem;
+  color: #5810ff;
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo-formulario {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.formulario-solicitud {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.bloque-formulario {
+  margin-bottom: 2rem;
+}
+
+.bloque-formulario h3 {
+  color: #652efc;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.3rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+input:focus, select:focus {
+  border-color: #652efc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(101, 46, 252, 0.3);
+}
+
+.btn-enviar {
+  display: block;
+  width: 100%;
+  background-color: #652efc;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background-color: #7342fc;
+}
+
+
+/* ===== Imagen decorativa del formulario ===== */
+.banner-solicitud {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.banner-solicitud img {
+  width: 100%;
+  height: 200px;          /* Altura controlada */
+  object-fit: cover;      /* Recorta sutilmente la imagen si es más alta */
+  border-radius: 8px;     /* Bordes suaves */
+  display: block;
+}
+
+
+/* ===== FOOTER ===== */
+.footer {
+    background: linear-gradient(135deg, #6320ff 0%, #7550f8 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #bdbdbd;
+}
+
+/* ESTE CONTENEDOR IGNORA TODOS LOS LIMITES DE LA PÁGINA */
+.page-wrapper {
+  width: 100vw !important;
+  min-height: 100vh !important;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+/* CONTENIDO ANCHO COMPLETO */
+.simulador-content {
+  width: 100%;
+  max-width: 1200px; /* puedes subirlo si quieres más ancho */
+  padding: 20px;
+}
+
+/* CAJA DE FORMULARIO */
+.simulador-box {
+  width: 100%;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Contenedor general */
+.solicitar-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Banner arriba, ocupando 100% */
+.banner-solicitud {
+  width: 100%;
+}
+
+.banner-solicitud img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+/* CONTENIDO CENTRADO DEBAJO DEL BANNER */
+.solicitar-main {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto; /* CENTRA TODO */
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* El formulario ocupa 100% del ancho disponible */
+.formulario-solicitud {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* CENTRA LOS BLOQUES */
+  gap: 30px;
+}
+
+/* Cada sección del formulario */
+.bloque-formulario {
+  width: 100%; /* OCUPA TODO EL ANCHO DEL CONTENEDOR CENTRADO */
+  max-width: 700px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: left; /* Inputs alineados correctamente */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Inputs */
+.bloque-formulario input,
+.bloque-formulario select {
+  width: 100%;
+  margin-bottom: 15px;
+}
