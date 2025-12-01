@@ -38,20 +38,20 @@ cd actividad2
 ## Capturas de pantalla
 
 ### Página principal (`Home.jsx`)
-![Captura de la página principal](./public/img/home1.png)
-![Captura de la página principal2](./public/img/home2.png)
+![Captura de la página principal](public/img/home1.png)
+![Captura de la página principal2](public/img/home2.png)
 
 ---
 
 ### Simulador de crédito (`simulador.jsx`)
-![Captura de la página de simulación](./public/img/formulariosimu.png)
+![Captura de la página de simulación](public/img/formulariosimu.png)
 
 ---
 
 ###  Formulario de solicitud (`solicitar.jsx`)
-![Captura de formulario solicitud crédito1](./public/img/formcredi1.png)
-![Captura de formulario solicitud crédito2](./public/img/formcredi2.png)
-![Captura de formulario solicitud crédito3](./public/img/formcredi3.png)
-![Captura de formulario solicitud crédito4](./public/img/formcredi4.png)
+![Captura de formulario solicitud crédito1](public/img/formcredi1.png)
+![Captura de formulario solicitud crédito2](public/img/formcredi2.png)
+![Captura de formulario solicitud crédito3](public/img/formcredi3.png)
+![Captura de formulario solicitud crédito4](public/img/formcredi4.png)
 
 ---
