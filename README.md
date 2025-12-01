@@ -1,16 +1,57 @@
-# React + Vite
+#  Proyecto: CreditSmart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+##  Nombre del estudiante
+**Juan Pablo Yara Cifuentes**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+##  Descripción breve del proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**CreditSmart** es una aplicación web desarrollada con **React + Vite y Javascript**, diseñada para ofrecer una experiencia moderna, rápida y clara para los usuarios interesados en créditos financieros de diferentes tipos.  
+La plataforma permite:
 
-## Expanding the ESLint configuration
+1. **Visualizar los tipos de crédito** disponibles y sus características.  
+2. **Simular un crédito** ingresando monto, plazo y tipo de crédito con cálculo automático de cuota.  
+3. **Enviar una solicitud de crédito** mediante un formulario validado.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+El sistema utiliza componentes reutilizables, navegación con React Router y manejo de estado mediante **useState** y **useMemo**
+
+---
+
+##  Cómo ejecutar el proyecto
+
+### Repositorio del proyecto
+https://github.com/juanpabloyaracifuentes89-dotcom/actividad2.git
+
+---
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/juanpabloyaracifuentes89-dotcom/actividad2
+cd actividad2
+```
+
+## CAPTURAS DE PANTALLA 
+
+## Capturas de pantalla
+
+### Página principal (`Home.jsx`)
+![Captura de la página principal](./public/img/home1.png)
+![Captura de la página principal](./public/img/home2.png)
+
+---
+
+### Simulador de crédito (`simulador.jsx`)
+![Captura de la página principal](./public/img/formulariosimu.png)
+
+---
+
+###  Formulario de solicitud (`solicitar.jsx`)
+![Captura de la página principal](./public/img/formcredi1.png)
+![Captura de la página principal](./public/img/formcredi2.png)
+![Captura de la página principal](./public/img/formcredi3.png)
+![Captura de la página principal](./public/img/formcredi4.png)
+
+---
