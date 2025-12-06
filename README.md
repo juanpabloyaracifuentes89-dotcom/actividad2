@@ -49,9 +49,9 @@ cd actividad2
 ---
 
 ###  Formulario de solicitud (`solicitar.jsx`)
-![Captura de formulario solicitud crédito1](./img/formcredi1.png)
-![Captura de formulario solicitud crédito2](./img/formcredi2.png)
-![Captura de formulario solicitud crédito3](./img/formcredi3.png)
-![Captura de formulario solicitud crédito4](./img/formcredi4.png)
+![Captura de formulario solicitud crédito1](/img/formcredi1.png)
+![Captura de formulario solicitud crédito2](/img/formcredi2.png)
+![Captura de formulario solicitud crédito3](/img/formcredi3.png)
+![Captura de formulario solicitud crédito4](/img/formcredi4.png)
 
 ---
