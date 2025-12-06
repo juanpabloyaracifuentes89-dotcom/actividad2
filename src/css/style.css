@@ -476,3 +476,39 @@ input:focus, select:focus {
   width: 100%;
   margin-bottom: 15px;
 }
+
+
+/* ===== RESULTADO DEL SIMULADOR EN RECUADRO ===== */
+.resultado {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    border-left: 5px solid #652efc; /* Color principal púrpura */
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Título dentro del resultado */
+.resultado h3 {
+    color: #5810ff; /* tono morado igual al banner */
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+/* Cada línea de información */
+.resultado p {
+    background: #f5f2ff;          /* suave morado muy claro */
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e4d9ff;    /* borde suave */
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+/* Valor destacado */
+.resultado .valor {
+    color: #9545ff;
+    font-weight: bold;
+}
