@@ -512,3 +512,26 @@ input:focus, select:focus {
     color: #9545ff;
     font-weight: bold;
 }
+/* Inputs mucho más claros y legibles */
+.input {
+  background-color: #f4f6fa !important;  /* Gris MUY claro para máxima legibilidad */
+  color: #1a1a1a !important;             /* Texto negro suave */
+  font-weight: 600;                      /* Hace el texto más visible */
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #c8d0e0;             /* Borde suave */
+  transition: all .2s ease;
+}
+
+/* Al hacer clic (focus), se ve más profesional */
+.input:focus {
+  background-color: #ffffff;
+  border-color: #5a5fe0;                 /* Morado del estilo de tu web */
+  box-shadow: 0 0 5px rgba(90, 95, 224, 0.3);
+}
+
+/* Placeholder suave y no confunde al usuario */
+.input::placeholder {
+  color: #8a8fa3 !important;             /* Gris tenue */
+  font-weight: 400;
+}
