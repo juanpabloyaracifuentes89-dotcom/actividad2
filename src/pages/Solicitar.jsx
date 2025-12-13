@@ -1,8 +1,12 @@
-// src/pages/Solicitar.jsx
 import React, { useState, useMemo } from "react";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import credits from "../data/creditsdata.js";
+
+// 🔥 Importar Firestore
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../Firebase/firestore.js";
+
 
 export default function Solicitar() {
   const initial = {
@@ -28,7 +32,6 @@ export default function Solicitar() {
     [form.tipoCredito]
   );
 
-  // AHORA: si no hay crédito seleccionado, NO ponemos 60 → ponemos null
   const maxMonths = currentCredit ? Number(currentCredit.maxMonths) : null;
 
   function validateField(name, value) {
@@ -58,7 +61,6 @@ export default function Solicitar() {
       if (!value) return "Campo requerido";
       const v = Number(value);
 
-      // EVITAMOS "NaN meses" → si maxMonths no existe, no validamos
       if (!maxMonths) return "";
 
       return v >= 12 && v <= maxMonths
@@ -95,7 +97,8 @@ export default function Solicitar() {
     return (P * r) / (1 - Math.pow(1 + r, -n));
   }
 
-  function handleSubmit(e) {
+  // 🔥 handleSubmit actualizado con Firebase
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const newErrors = {};
@@ -118,11 +121,18 @@ export default function Solicitar() {
       createdAt: new Date().toISOString()
     };
 
-    setRequests((prev) => [solicitud, ...prev]);
+    try {
+      // 👉 GUARDAR EN FIREBASE
+      await addDoc(collection(db, "solicitudes"), solicitud);
 
-    setSuccess("Solicitud enviada con éxito.");
-    setForm(initial);
-    setTimeout(() => setSuccess(""), 3000);
+      setSuccess("Solicitud enviada y guardada en Firebase.");
+      setForm(initial);
+
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (error) {
+      console.error("Error guardando en Firebase:", error);
+      setSuccess("Error al guardar la solicitud.");
+    }
   }
 
   return (
