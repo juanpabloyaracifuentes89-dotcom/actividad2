@@ -1,57 +1,50 @@
-#  Proyecto: CreditSmart
+# Proyecto: CreditSmart
 
 ---
 
-##  Nombre del estudiante
+## Nombre del estudiante
 **Juan Pablo Yara Cifuentes**
 
 ---
 
-##  Descripción breve del proyecto
+## Descripción breve del proyecto
 
-**CreditSmart** es una aplicación web desarrollada con **React + Vite y Javascript**, diseñada para ofrecer una experiencia moderna, rápida y clara para los usuarios interesados en créditos financieros de diferentes tipos.  
+**CreditSmart** es una aplicación web desarrollada con **React + Vite y JavaScript**, orientada a la gestión y solicitud de créditos financieros.
+
+El proyecto evolucionó de una aplicación que almacenaba datos solo en memoria a un sistema con **persistencia real en la nube**, utilizando **Firebase Firestore** como base de datos NoSQL.
+
 La plataforma permite:
 
-1. **Visualizar los tipos de crédito** disponibles y sus características.  
-2. **Simular un crédito** ingresando monto, plazo y tipo de crédito con cálculo automático de cuota.  
-3. **Enviar una solicitud de crédito** mediante un formulario validado.
+1. **Visualizar los tipos de crédito** disponibles.
+2. **Simular un crédito** ingresando monto, plazo y tipo de crédito.
+3. **Registrar solicitudes de crédito** y guardarlas de forma permanente en la nube.
+4. **Consultar las solicitudes registradas**, accesibles para múltiples usuarios.
+5. Mantener los datos incluso al **cerrar o recargar el navegador**.
 
-El sistema utiliza componentes reutilizables, navegación con React Router y manejo de estado mediante **useState** y **useMemo**
+La aplicación utiliza navegación con **React Router**, manejo de estado con **useState** y conexión a Firebase para la persistencia de datos.
 
 ---
 
-##  Cómo ejecutar el proyecto
+## Implementación con Firebase
+
+Para cumplir los requisitos del proyecto se realizó:
+
+- Creación de una **aplicación web en Firebase**
+- Habilitación de **Firestore Database**
+- Configuración de Firebase dentro del proyecto React
+- Uso de **variables de entorno** para proteger las credenciales
+- Integración completa de Firestore para guardar y consultar solicitudes
+
+---
+
+## Cómo ejecutar el proyecto
 
 ### Repositorio del proyecto
-https://github.com/juanpabloyaracifuentes89-dotcom/actividad2.git
+https://github.com/juanpabloyaracifuentes89-dotcom/actividadReact.git
 
 ---
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/juanpabloyaracifuentes89-dotcom/actividad2
-cd actividad2
-```
-
-## CAPTURAS DE PANTALLA 
-
-## Capturas de pantalla
-
-### Página principal (`Home.jsx`)
-![Captura de la página principal](./img/home1.png)
-![Captura de la página principal2](./img/home2.png)
-
----
-
-### Simulador de crédito (`simulador.jsx`)
-![Captura de la página de simulación](./img/formulariosimu.png)
-
----
-
-###  Formulario de solicitud (`solicitar.jsx`)
-![Captura de formulario solicitud crédito1](/img/formcredi1.png)
-![Captura de formulario solicitud crédito2](/img/formcredi2.png)
-![Captura de formulario solicitud crédito3](/img/formcredi3.png)
-![Captura de formulario solicitud crédito4](/img/formcredi4.png)
-
----
+git clone https://github.com/juanpabloyaracifuentes89-dotcom/actividadReact
+cd actividadReact
