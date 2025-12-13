@@ -535,3 +535,88 @@ input:focus, select:focus {
   color: #8a8fa3 !important;             
   font-weight: 400;
 }
+/* ======================================= */
+/* 1. HEADER/BANNER (Se mantiene de ancho completo) */
+/* ======================================= */
+.solicitudes-header {
+    /* (Se mantienen los estilos existentes de ancho completo y degradado) */
+    background: linear-gradient(135deg, #5810ff 0%, #7049ff 100%); 
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.solicitudes-header .contenedor-header {
+    /* El contenido dentro del header respeta el límite de 1200px */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ======================================= */
+/* 2. CONTENIDO PRINCIPAL/TARJETAS (FORZADO A 100% ANCHO) */
+/* ======================================= */
+
+.solicitudes-content {
+    /* 🛑 CLAVE: Anular el límite de ancho y forzar la expansión de borde a borde */
+    max-width: none !important; 
+    
+    /* Usar las propiedades de posicionamiento para estirar y anular contenedores padres */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw; 
+    
+    /* Mover el elemento -50% a la izquierda para centrarlo y anular el left: 50% */
+    transform: translateX(-50%); 
+    
+    /* Mantenimiento */
+    box-sizing: border-box; 
+    padding: 20px 40px; 
+    min-height: 50vh;
+    margin: 0 auto 3rem auto; /* Asegura un margen inferior */
+}
+
+/* Título de la sección de tarjetas */
+.solicitudes-section-title {
+    font-size: 2rem;
+    color: #4b2bff; 
+    margin: 0 auto 2.5rem auto; 
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e4d9ff; 
+    text-align: left;
+    
+    /* Permite que el título se extienda, pero le damos un max-width para que se vea ordenado */
+    max-width: 1600px; 
+    width: 100%;
+}
+
+/* Contenedor de la lista de tarjetas (Aplica la cuadrícula expandida) */
+.solicitudes-list {
+    display: grid;
+    /* La cuadrícula usa todo el ancho disponible para crear columnas */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem; 
+    margin-bottom: 3rem;
+    
+    /* Opcional: Centrar la cuadrícula dentro del ancho completo */
+    max-width: 1600px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo de cada tarjeta de solicitud (Se mantiene igual) */
+.solicitud-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-left: 5px solid #652efc; 
+    cursor: pointer;
+}
+
+/* ... (el resto de estilos de tarjetas, modal, etc., se mantienen sin cambios) ... */
